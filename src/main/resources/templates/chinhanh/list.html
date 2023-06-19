@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Phòng List</title>
+    <th:block th:replace="layout :: link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Địa chỉ</th>
+
+        </tr>
+        <tr th:each="chinhanh : ${chinhanhs}">
+            <td th:text="${chinhanh.id}"></td>
+            <td th:text="${chinhanh.name}"></td>
+            <td th:text="${chinhanh.diachi}"></td>
+            <td>
+                <a th:href="@{/chinhanhs/edit/{id}(id=${chinhanh.id})}">Edit</a>
+                <form th:action="@{/chinhanhs/delete/{id}(id=${chinhanh.id})}" method="post" onsubmit="return confirm('Are you sure?')">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>
