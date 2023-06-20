@@ -19,6 +19,7 @@ public class PhongService {
         Optional<Phong> optional = iPhongRepository.findById(id);
         return optional.orElse(null);
     }
+
     public void addPhong(Phong phong){
         iPhongRepository.save(phong);
     }

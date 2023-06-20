@@ -75,7 +75,7 @@ public class PhongController {
         return "redirect:/phongs";
     }
     @PostMapping("/delete/{id}")
-    public String deletePhong(@PathVariable("id") long id){
+    public String deletePhong(@PathVariable("id") Long id){
         phongService.deletePhong(id);
         return "redirect:/phongs";
     }

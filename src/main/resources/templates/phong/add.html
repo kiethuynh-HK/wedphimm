@@ -22,7 +22,7 @@
         </div>
 
         <div class="col-6 mb-3">
-            <label class="form-label" for="chinhanh">Chi Nhánh:</label>
+            <label class="form-label" for="chinhanh">Chi Nhánh: </label>
             <select class="form-control" name="chinhanh.id" id="chinhanh">
                 <option value="">-- Select Chi Nhánh --</option>
                 <option th:each="chinhanh : ${chinhanhs}" th:value="${chinhanh.id}" th:text="${chinhanh.name}"></option>

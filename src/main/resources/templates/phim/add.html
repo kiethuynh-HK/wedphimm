@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:replace="layout :: link-css"></th:block>
+    <title>Add Phòng</title>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+    <h1>Add Phòng</h1>
+    <form th:action="@{/phims/add}" th:object="${phim}" method="post">
+
+        <div class="col-6 mb-3">
+            <label class="form-label" for="tenphim">Tên phim:</label>
+            <input class="form-control" type="text" th:field="*{tenPhim}" id="tenphim">
+            <span class="text-danger" th:if="${#fields.hasErrors('tenPhim')}" th:errors ="*{tenPhim}"></span>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="rate">Rated:</label>
+            <input class="form-control" type="text" th:field="*{rated}" id="rate">
+        </div>
+
+        <div class="col-6 mb-3">
+            <label class="form-label" for="ngongnu">Ngôn ngu :</label>
+            <select class="form-control" name="ngonNgus.id" id="ngongnu">
+                <option value="">-- Select Ngôn Ngữ --</option>
+                <option th:each="ngonngu : ${ngonngus}" th:value="${ngonngu.id}" th:text="${ngonngu.ngonNgu}"></option>
+            </select>
+
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="loaiphim">Loai phim:</label>
+            <select class="form-control" name="loaiPhims.id" id="loaiphim">
+                <option value="">-- Select Loại Phim --</option>
+                <option th:each="loaiphim : ${loaiphims}" th:value="${loaiphim.id}" th:text="${loaiphim.tenLoai}"></option>
+            </select>
+
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="daodien">Dao dien:</label>
+            <select class="form-control" name="daoDiens.id" id="daodien">
+                <option value="">-- Select Dao dien --</option>
+                <option th:each="ngonngu : ${daodiens}" th:value="${daodien.id}" th:text="${daodien.tenDaoDien}"></option>
+            </select>
+            <hr/>
+
+        <input type="submit" class="btn btn-primary" value="Save">
+    </form>
+    <br>
+    <a th:href="@{/phims}">Back to List</a>
+</div>
+<th:block th:replace="layout :: footer"></th:block>
+
+</body>
+</html>

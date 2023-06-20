@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>My Book List</title>
+
+    <th:block th:replace="layout :: link-css"></th:block>
+
+</head>
+
+<body>
+
+<th:block th:replace="layout :: header"></th:block>
+
+<div class="container">
+
+    <h1 th:text=${title}></h1>
+
+    <table class="table">
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Tên đạo diễn</th>
+
+
+
+            <th>Mô tả</th>
+
+            <th>Action</th>
+
+        </tr>
+
+        <tr th:each="dao_dien: ${daodiens}">
+            <td th:text="${dao_dien.id}"></td>
+            <td th:text="${dao_dien.tenDaoDien}"></td>
+
+            <td th:text="${dao_dien.moTa}"></td>
+
+            <td>
+
+                <a th:href="@{/daodiens/edit/{id}(id=${dao_dien.id})}">Edit</a>
+
+                <form th:action="@{/daodiens/delete/{id}(id=${dao_dien.id})}" method="post" onsubmit="return confirm('Are you sure?')">
+                    <button type="submit">Delete</button>
+                </form>
+
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
+
+<th:block th:replace="layout :: footer"></th:block>
+
+</body>
+
+</html>

@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
 @Entity
 @Table(name = "phong")
@@ -28,7 +31,6 @@ public class Phong {
     @JoinColumn(name = "chinhanh_id")
 //    @ValidChiNhanhId
     private ChiNhanh chinhanh;
-
 
 
 }
