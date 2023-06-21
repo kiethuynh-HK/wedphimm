@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <th:block th:replace="layout :: link-css"></th:block>
-    <title>Add Phòng</title>
+  <meta charset="UTF-8">
+  <th:block th:replace="layout :: link-css"></th:block>
+  <title>Add Đạo diễn</title>
 </head>
 <body>
 <th:block th:replace="layout :: header"></th:block>
 <div class="container">
-    <h1>Add Phòng</h1>
-    <form th:action="@{/daodiens/add}" th:object="${daodien}" method="post">
+  <h1>Add Đạo diễn</h1>
+  <form th:action="@{/daodiens/add}" th:object="${daodien}" method="post">
 
-        <div class="col-6 mb-3">
-            <label class="form-label" for="tendaodien">Tên đạo diễn:</label>
-            <input class="form-control" type="text" name="tenDaoDien" id="tendaodien">
+    <div class="col-6 mb-3">
+      <label class="form-label" for="tendaodien">Tên đạo diễn:</label>
+      <input class="form-control" type="text" name="tenDaoDien" id="tendaodien">
 
-        </div>
-        <div class="col-6 mb-3">
-            <label class="form-label" for="moTa">Mô tả:</label>
-            <input class="form-control" type="text" name="moTa" id="moTa">
-        </div>
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="moTa">Mô tả:</label>
+      <input class="form-control" type="text" name="moTa" id="moTa">
+    </div>
 
 
-        <input type="submit" class="btn btn-primary" value="Save">
-    </form>
-    <br>
-    <a th:href="@{/daodiens}">Back to List</a>
+    <input type="submit" class="btn btn-primary" value="Save">
+  </form>
+  <br>
+  <a th:href="@{/daodiens}">Back to List</a>
 </div>
 <th:block th:replace="layout :: footer"></th:block>
 
 </body>
 </html>
-

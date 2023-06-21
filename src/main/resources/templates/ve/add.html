@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:replace="layout :: link-css"></th:block>
+    <title>Add Vé</title>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+    <h1>Add Vé</h1>
+    <form th:action="@{/ves/add}" th:object="${ve}" method="post">
+
+        <div class="col-6 mb-3">
+            <label class="form-label" for="phong">Phòng:</label>
+            <select class="form-control" name="phong.id" id="phong">
+                <option value="">-- Select Phòng --</option>
+                <option th:each="phong : ${phongs}" th:value="${phong.id}" th:text="${phong.tenphong}"></option>
+            </select>
+            <span class="text-danger" th:if="${#fields.hasErrors('phong.id')}" th:errors ="*{phong}"></span>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="phim">tên phim:</label>
+            <select class="form-control" name="phim.id" id="phim">
+                <option value="">-- Select phim --</option>
+                <option th:each="phim: ${phims}" th:value="${phim.id}" th:text="${phim.tenPhim}"></option>
+            </select>
+            <span class="text-danger" th:if="${#fields.hasErrors('phim.id')}" th:errors ="*{phim}"></span>
+        </div>
+
+        <div class="col-6 mb-3">
+            <label class="form-label" for="chinhanh">Chi Nhánh:</label>
+            <select class="form-control" name="chinhanh.id" id="chinhanh">
+                <option value="">-- Select Chi Nhánh --</option>
+                <option th:each="chinhanh : ${chinhanhs}" th:value="${chinhanh.id}" th:text="${chinhanh.name}"></option>
+            </select>
+            <span class="text-danger" th:if="${#fields.hasErrors('chinhanh.id')}" th:errors ="*{chinhanh}"></span>
+        </div>
+
+
+        <input type="submit" class="btn btn-primary" value="Save">
+    </form>
+    <br>
+    <a th:href="@{/ves}">Back to List</a>
+</div>
+<th:block th:replace="layout :: footer"></th:block>
+
+</body>
+</html>

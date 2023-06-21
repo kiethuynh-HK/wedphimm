@@ -1,7 +1,10 @@
 package com.example.wedphimm.Controller;
 
+
 import com.example.wedphimm.entity.Phong;
+
 import com.example.wedphimm.service.ChiNhanhService;
+
 import com.example.wedphimm.service.PhongService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,8 @@ public class PhongController {
     @Autowired
     private ChiNhanhService chinhanhService;
 
+
+
     @GetMapping
     public String showAllPhong(Model model)
     {
@@ -34,6 +39,7 @@ public class PhongController {
     public String addPhongForm(Model model){
         model.addAttribute("phong",new Phong());
         model.addAttribute("chinhanhs",chinhanhService.getAllChiNhanhs());
+
         return "phong/add";
     }
 
@@ -43,6 +49,7 @@ public class PhongController {
         if(bindingResult.hasErrors())
         {
             model.addAttribute("chinhanhs",chinhanhService.getAllChiNhanhs());
+
             return "phong/add";
         }
         phongService.addPhong(phong);
@@ -54,6 +61,7 @@ public class PhongController {
         if(editPhong != null){
             model.addAttribute("phong", editPhong);
             model.addAttribute("chinhanhs", chinhanhService.getAllChiNhanhs());
+
             return "phong/edit";
         }else {
             return "not-found";
@@ -63,6 +71,7 @@ public class PhongController {
     public String editPhong(@Valid @ModelAttribute("phong") Phong updatePhong, BindingResult bindingResult, Model model ){
         if (bindingResult.hasErrors()){
             model.addAttribute("chinhanhs", chinhanhService.getAllChiNhanhs());
+
             return "phong/edit";
         }
         phongService.getAllPhong().stream()
@@ -79,4 +88,32 @@ public class PhongController {
         phongService.deletePhong(id);
         return "redirect:/phongs";
     }
+//    private Long id_;
+//    @GetMapping("/addghe/{id}")
+//    public String gheForm(@PathVariable("id") Long id, Model model){
+//        Phong editPhong = phongService.getPhongById(id);
+//        if(editPhong != null){
+//            id_=id;
+//            return "phong/addGhe";
+//        }else {
+//            return "not-found";
+//        }
+//    }
+//    @PostMapping("/addghe")
+//    public String ghe(Long soghe, BindingResult bindingResult){
+//        if (bindingResult.hasErrors()){
+//            return "phong/addGhe";
+//        }
+//        if(soghe!=null){
+//            for(Integer i=0;i<soghe;i++){
+//                Ghe ghe=new Ghe();
+//                ghe.setTenghe("Ghế: "+(i+1));
+//                Phong phong=phongService.getPhongById(id_);
+//                ghe.setPhongs(phong);
+//                gheService.addGhe(ghe);
+//            }
+//        }
+//        return "redirect:/phongs";
+//    }
+
 }

@@ -1,8 +1,6 @@
 package com.example.wedphimm.Controller;
 
 import com.example.wedphimm.entity.DaoDien;
-import com.example.wedphimm.entity.LoaiPhim;
-import com.example.wedphimm.entity.NgonNgu;
 import com.example.wedphimm.entity.Phim;
 import com.example.wedphimm.repository.ILoaiPhimRepository;
 import com.example.wedphimm.repository.INgonNguRepository;
@@ -15,9 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/phims")
@@ -63,33 +59,62 @@ public class PhimController {
 
 
     }
+//    @GetMapping("/edit/{id}")
+//    public String editDaoDienForm(@PathVariable("id") Long id, Model model){
+//        DaoDien editDaoDien = daoDienService.getDaoDienyId(id);
+//        if(editDaoDien != null){
+//            model.addAttribute("daodien", editDaoDien);
+//            return "daodien/edit";
+//        }else {
+//            return "not-found";
+//        }
+//    }
+//    @PostMapping("/edit")
+//    public String editDaoDien(@Valid @ModelAttribute("daodien") DaoDien updateDaoDien, BindingResult bindingResult, Model model){
+//        if (bindingResult.hasErrors()){
+//            return "phong/edit";
+//        }
+//        daoDienService.getAllDaoDien().stream()
+//                .filter(daoDien -> daoDien.getId() == daoDien.getId())
+//                .findFirst()
+//                .ifPresent(daoDien -> {
+//
+//                    daoDienService.updateDaoDien(updateDaoDien);
+//                });
+//        return "redirect:/daodiens";
+//    }
+//    @PostMapping("/delete/{id}")
+//    public String deleteDaoDien(@PathVariable("id") Long id){
+//        daoDienService.deleteDaoDien(id);
+//        return "redirect:/daodiens";
+//    }
     @GetMapping("/edit/{id}")
-    public String editDaoDienForm(@PathVariable("id") Long id, Model model){
-        DaoDien editDaoDien = daoDienService.getDaoDienyId(id);
-        if(editDaoDien != null){
-            model.addAttribute("daodien", editDaoDien);
-            return "daodien/edit";
+    public String editPhimForm(@PathVariable("id") Long id, Model model){
+        Phim editPhim = phimService.getPhimById(id);
+        if(editPhim != null){
+            model.addAttribute("phim", editPhim);
+            return "phim/edit";
         }else {
             return "not-found";
         }
     }
     @PostMapping("/edit")
-    public String editDaoDien(@Valid @ModelAttribute("daodien") DaoDien updateDaoDien, BindingResult bindingResult, Model model){
+    public String editPhim(@Valid @ModelAttribute("phim") Phim updatePhim, BindingResult bindingResult, Model model){
         if (bindingResult.hasErrors()){
-            return "phong/edit";
+            return "phim/edit";
         }
-        daoDienService.getAllDaoDien().stream()
-                .filter(daoDien -> daoDien.getId() == daoDien.getId())
+        phimService.getAllPhim().stream()
+                .filter(phim -> phim.getId() == updatePhim.getId())
                 .findFirst()
-                .ifPresent(daoDien -> {
+                .ifPresent(phim -> {
 
-                    daoDienService.updateDaoDien(updateDaoDien);
+                    phimService.updatePhim(updatePhim);
                 });
-        return "redirect:/daodiens";
+        return "redirect:/phims";
     }
     @PostMapping("/delete/{id}")
-    public String deleteDaoDien(@PathVariable("id") Long id){
-        daoDienService.deleteDaoDien(id);
-        return "redirect:/daodiens";
+    public String deletePhim(@PathVariable("id") Long id){
+        phimService.deletePhim(id);
+        return "redirect:/phims";
     }
 }

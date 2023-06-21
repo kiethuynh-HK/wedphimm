@@ -2,12 +2,10 @@ package com.example.wedphimm.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+
 @Data
 @Entity
 @Table
@@ -29,5 +27,6 @@ public class Phim {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "daoDien_id")
     private DaoDien daoDiens;
-
+    @OneToMany(mappedBy = "phim",cascade= CascadeType.ALL)
+    private List<Ve> ves;
 }

@@ -5,11 +5,11 @@
 
 <head>
 
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
 
-    <title>My Book List</title>
+  <title>Danh sách phim</title>
 
-    <th:block th:replace="layout :: link-css"></th:block>
+  <th:block th:replace="layout :: link-css"></th:block>
 
 </head>
 
@@ -19,43 +19,43 @@
 
 <div class="container">
 
-    <h1 th:text=${title}></h1>
+  <h1 th:text=${title}></h1>
 
-    <table class="table">
+  <table class="table">
 
-        <tr>
+    <tr>
 
-            <th>ID</th>
+      <th>ID</th>
 
-            <th>Tên phim</th>
+      <th>Tên phim</th>
 
 
-            <th>Rated</th>
+      <th>Rated</th>
 
-            <th>Action</th>
+      <th>Action</th>
 
-        </tr>
+    </tr>
 
-        <tr th:each="phim: ${phims}">
-            <td th:text="${phim.id}"></td>
+    <tr th:each="phim: ${phims}">
+      <td th:text="${phim.id}"></td>
 
-            <td th:text="${phim.tenPhim}"></td>
+      <td th:text="${phim.tenPhim}"></td>
 
-            <td th:text="${phim.rated}"></td>
+      <td th:text="${phim.rated}"></td>
 
-            <td>
+      <td>
 
-                <a th:href="@{/phims/edit/{id}(id=${phim.id})}">Edit</a>
+        <a th:href="@{/phims/edit/{id}(id=${phim.id})}">Edit</a>
 
-                <form th:action="@{/phims/delete/{id}(id=${phim.id})}" method="post" onsubmit="return confirm('Are you sure?')">
-                    <button type="submit">Delete</button>
-                </form>
+        <form th:action="@{/phims/delete/{id}(id=${phim.id})}" method="post" onsubmit="return confirm('Are you sure?')">
+          <button type="submit">Delete</button>
+        </form>
 
-            </td>
+      </td>
 
-        </tr>
+    </tr>
 
-    </table>
+  </table>
 
 </div>
 

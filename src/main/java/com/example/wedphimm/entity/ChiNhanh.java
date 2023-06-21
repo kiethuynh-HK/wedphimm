@@ -18,4 +18,6 @@ public class ChiNhanh {
     private String diachi;
     @OneToMany(mappedBy = "chinhanh",cascade= CascadeType.ALL)
     private List<Phong> phongs;
+    @OneToMany(mappedBy = "chinhanh",cascade= CascadeType.ALL)
+    private List<Ve> ves;
 }

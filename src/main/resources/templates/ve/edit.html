@@ -9,17 +9,25 @@
 <th:block th:replace="layout :: header"></th:block>
 <div class="container">
     <h1>Edit Phòng</h1>
-    <form th:action="@{/phongs/edit}" th:object="${phong}" method="post">
+    <form th:action="@{/ves/edit}" th:object="${ve}" method="post">
         <input type="hidden" th:field="*{id}">
         <div class="col-6 mb-3">
-            <label class="form-label" for="tenphong">Tên phòng:</label>
-            <input class="form-control" type="text" th:field="*{tenphong}" id="tenphong">
-            <span class="text-danger" th:if="${#fields.hasErrors('tenphong')}" th:errors ="*{tenphong}"></span>
+            <label class="form-label" for="phong">Phòng:</label>
+            <select class="form-control" name="phong.id" id="phong">
+                <option value="">-- Select Phòng --</option>
+                <option th:each="phong : ${phongs}" th:value="${phong.id}" th:text="${phong.tenphong}"></option>
+            </select>
+            <span class="text-danger" th:if="${#fields.hasErrors('phong.id')}" th:errors ="*{phong}"></span>
         </div>
         <div class="col-6 mb-3">
-            <label class="form-label" for="maphong">Mã Phòng:</label>
-            <input class="form-control" type="text" th:field="*{maphong}" id="maphong">
+            <label class="form-label" for="phim">tên phim:</label>
+            <select class="form-control" name="phim.id" id="phim">
+                <option value="">-- Select phim --</option>
+                <option th:each="phim: ${phims}" th:value="${phim.id}" th:text="${phim.tenPhim}"></option>
+            </select>
+            <span class="text-danger" th:if="${#fields.hasErrors('phim.id')}" th:errors ="*{phim}"></span>
         </div>
+
 
         <div class="col-6 mb-3">
             <label class="form-label" for="chinhanh">Chi Nhánh:</label>
@@ -34,7 +42,7 @@
         <input type="submit" value="Save">
     </form>
     <br>
-    <a th:href="@{/phongs}">Back to List</a>
+    <a th:href="@{/ves}">Back to List</a>
 </div>
 <th:block th:replace="layout :: footer"></th:block>
 </body>

@@ -1,12 +1,13 @@
 package com.example.wedphimm.entity;
 
+//import com.example.wedphimm.Validator.annotation.ValidChiNhanhId;
+//import com.example.wedphimm.Validator.annotation.ValidUserId;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Entity
@@ -29,8 +30,10 @@ public class Phong {
 
     @ManyToOne
     @JoinColumn(name = "chinhanh_id")
-//    @ValidChiNhanhId
     private ChiNhanh chinhanh;
+    @OneToMany(mappedBy = "phong",cascade= CascadeType.ALL)
+    private List<Ve> ves;
+
 
 
 }
